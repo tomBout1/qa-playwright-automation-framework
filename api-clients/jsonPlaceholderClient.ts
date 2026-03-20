@@ -7,7 +7,6 @@ export interface Post {
     body: string;
 }
 
-//Method to GET response 
 export class JsonPlaceHolderClient {
     constructor(private request: APIRequestContext) {}
 
