@@ -11,15 +11,12 @@ export interface Post {
 export class JsonPlaceHolderClient {
     constructor(private request: APIRequestContext) {}
 
-    async getPostById(id: number): Promise<Post> {
+    async getPostById(id: number) {
         const response = await this.request.get(`https://jsonplaceholder.typicode.com/posts/${id}`);
 
-        if (response.status() !== 200) {
-            throw new Error(`Unexpected status: ${response.status()}`);
-        }
-
-        const body = await response.json();
-
-        return body as Post;
+        return {
+            status: response.status(),
+            body: await response.json()
+        };
     }
 }
